@@ -67,25 +67,48 @@ namespace recipes
             Console.Title = "PROG6221_PART1";
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("********************************************************************");
-            Console.WriteLine("Welcome to Sanele's recipe app");
-            Console.WriteLine("Press enter to proceed ;-)");
+            Console.WriteLine("                Welcome to Sanele's recipe app  ");
+            Console.WriteLine("               Please enter an option to proceed");
             Console.WriteLine("********************************************************************");
-            
-            
-            
             Console.ResetColor();
 
-            RecipeName myObj = new RecipeName();
-            Console.WriteLine("What is the name of the recipe?");
-            myObj.Name = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("1) Add Recipe");
+            Console.WriteLine("2) Exit Application");
+            int firststep = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
 
-            Console.WriteLine("How many ingredients would you like to enter for the " + myObj.Name + " recipe?");
-            Console.Clear();
+            Console.WriteLine("Please enter an option to proceed to entering your recipe");
 
-            NoIngredients();
-            NoSteps();
-            
+            if (firststep == 1)
+            {
+
+                RecipeName myObj = new RecipeName();
+                Console.WriteLine("What is the name of the recipe?");
+                myObj.Name = Convert.ToString(Console.ReadLine());
+                Console.Clear();
+
+                Console.WriteLine("How many ingredients would you like to enter for the " + myObj.Name + " recipe?");
+                Console.Clear();
+
+                NoIngredients();
+                NoSteps();
+
+                Console.WriteLine("Select an option");
+                Console.WriteLine("1) Main Menu.");
+                Console.WriteLine("2) Exit Application.");
+
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("********************************************************************");
+                Console.WriteLine("                          Main Menu");
+                Console.WriteLine("********************************************************************");
+                Console.ResetColor();
+            }
+            if (firststep == 2)
+            {
+                Console.ReadKey(true);
+                Environment.Exit(0);
+                
+            }
             Console.Read();
         }
 

@@ -11,7 +11,7 @@ namespace recipes
         {
             get { return name; }
             set { name = value; }
-
+            
 
         }
     }
@@ -54,28 +54,39 @@ namespace recipes
 
             int number = Convert.ToInt32(Console.ReadLine());
             string[] arr = new string[number];
-
+            Console.Clear();
             for (int i = 0; i < number; i++)
             {
                 Console.WriteLine("Please enter the name of the ingredient");
                 arr[i] = Console.ReadLine();
-
+                Console.Clear();
             }
         }
         public static void Main(string[] args)
         {
+            Console.Title = "PROG6221_PART1";
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("********************************************************************");
-            Console.WriteLine("Welcome to Sanele's recipe app, press enter to proceed ;-)");
+            Console.WriteLine("Welcome to Sanele's recipe app");
+            Console.WriteLine("Press enter to proceed ;-)");
             Console.WriteLine("********************************************************************");
+            
+            
+            
+            Console.ResetColor();
 
             RecipeName myObj = new RecipeName();
             Console.WriteLine("What is the name of the recipe?");
             myObj.Name = Convert.ToString(Console.ReadLine());
+            Console.Clear();
 
             Console.WriteLine("How many ingredients would you like to enter for the " + myObj.Name + " recipe?");
+            Console.Clear();
 
             NoIngredients();
             NoSteps();
+            
+            Console.Read();
         }
 
 

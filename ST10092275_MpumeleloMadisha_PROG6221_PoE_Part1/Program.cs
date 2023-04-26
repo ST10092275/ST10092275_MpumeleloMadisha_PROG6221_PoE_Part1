@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Timers;
 
 namespace recipes
 {
@@ -20,24 +21,28 @@ namespace recipes
     {
         static void NoIngredients()
         {
+            
 
             int size = Convert.ToInt32(Console.ReadLine());
             string[] array = new string[size];
 
-            for (int a = 0; a < size; a++)
-            {
-                Console.WriteLine("Please enter the name of the ingredient");
-                array[a] = Console.ReadLine();
-            }
-            for (int b = 0; b < size; b++)
-            {
-                Console.WriteLine("Please enter the quantity of ingredient");
-                array[b] = Console.ReadLine();
-            }
-            for (int c = 0; c < size; c++)
-            {
-                Console.WriteLine("Please enter the measurement unit of ingredient");
-                array[c] = Console.ReadLine();
+            string[] value = { "first", "second", "third", "fourth", "fifth", "sixth", "eighth", "ninth", "tenth", "eleventh", "twelfth", "thirteenth", "fourteent", "fifteenth" };
+            for (int i = 0; i < array.Length; i++) {
+                for (int a = 0; a < size; a++)
+                {
+                    Console.WriteLine("Please enter the name of the "+ " " + value + " ingredient");
+                    array[a] = Console.ReadLine();
+                }
+                for (int b = 0; b < size; b++)
+                {
+                    Console.WriteLine("Please enter the quantity of ingredient");
+                    array[b] = Console.ReadLine();
+                }
+                for (int c = 0; c < size; c++)
+                {
+                    Console.WriteLine("Please enter the measurement unit of ingredient");
+                    array[c] = Console.ReadLine();
+                }
             }
         }
 

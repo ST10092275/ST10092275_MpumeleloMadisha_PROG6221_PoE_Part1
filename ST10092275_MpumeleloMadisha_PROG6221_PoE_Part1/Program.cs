@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace recipes
@@ -16,50 +17,7 @@ namespace recipes
     }
     class Recipe
     {
-        static void NoIngredients()
-        {
 
-            int size = Convert.ToInt32(Console.ReadLine());
-            string[] array = new string[size];
-
-            for (int a = 0; a < size; a++)
-            {
-                Console.WriteLine("Please enter the name of the ingredient");
-                array[a] = Console.ReadLine();
-            }
-            Console.Clear();
-            for (int b = 0; b < size; b++)
-            {
-                    Console.WriteLine($"Please enter the quantity of ingredient");
-                    ar[b] = Convert.ToInt32(Console.ReadLine());
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Please only enter numerical value");
-            }
-            Console.Clear();
-            for (int c = 0; c < size; c++)
-            {
-                Console.WriteLine("Please enter the measurement unit of ingredient");
-                array[c] = Console.ReadLine();
-            }
-            Console.Clear();
-        }
-        static void NoSteps()
-        {
-            Console.WriteLine("How many steps would you like to enter?");
-
-            int number = Convert.ToInt32(Console.ReadLine());
-            string[] arr = new string[number];
-
-            for (int i = 0; i < number; i++)
-            {
-                Console.Write("-");
-                arr[i] = Console.ReadLine();
-
-            }
-        }
         static void AddRecipe()
         {
             int firststep = Convert.ToInt32(Console.ReadLine());
@@ -77,63 +35,123 @@ namespace recipes
                 Console.Clear();
 
                 Console.WriteLine("How many ingredients would you like to enter for the " + myObj.Name + " recipe?");
-               
 
-                NoIngredients();
-                Console.WriteLine("Please enter any key to proceed");
-                Console.Clear();
-                NoSteps();
-                Console.Clear();
 
-                Console.WriteLine("Select an option");
-                Console.WriteLine("1) Main Menu.");
-                Console.WriteLine("2) Exit Application.");
+                int size = Convert.ToInt32(Console.ReadLine());
+                string[] array = new string[size];
+                int[] ar = new int[size];
+                string[] array2 = new string[size];
 
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("********************************************************************");
-                Console.WriteLine("                          Main Menu");
-                Console.WriteLine("********************************************************************");
-                Console.WriteLine("1) Print Recipe");
-                Console.WriteLine("2) Exit Application.");
-                Console.ResetColor();
-
-                int step = Convert.ToInt32(Console.ReadLine());
-
-                if (step == 1)
+                for (int a = 0; a < size; a++)
                 {
+                    Console.WriteLine("Please enter the name of the ingredient");
+                    array[a] = Console.ReadLine();
 
-                    Console.WriteLine("Here is the recipe for " + myObj);
-                    Console.WriteLine("********************************************************************");
+                    Console.Clear();
+                    Console.WriteLine("Please enter the quantity of ingredient");
+                    ar[a] = Convert.ToInt32(Console.ReadLine());
+
+                    Console.Clear();
+
+                    Console.WriteLine("Please enter the measurement unit of ingredient ");
+                    array2[a] = Console.ReadLine();
+
+                    Console.Clear();
+                    Console.WriteLine("Please enter any key to proceed");
+                    Console.Clear();
+                }
+                    Console.WriteLine("How many steps would you like to enter?");
+                    int number = Convert.ToInt32(Console.ReadLine());
+                    string[] arr = new string[number];
+                    for (int i = 0; i < number; i++)
+                    {
+                        Console.Write("-");
+                        arr[i] = Console.ReadLine();
+
+                    }
+                    
+                
+                    Console.WriteLine("Select an option");
+                    Console.WriteLine("1) Main Menu.");
+                    Console.WriteLine("2) Exit Application.");
+
+                    int input = Convert.ToInt32(Console.ReadLine());
+                    
+                    if (input == 1)
+                    {
+
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("********************************************************************");
+                        Console.WriteLine("                          Main Menu");
+                        Console.WriteLine("********************************************************************");
+                        Console.WriteLine("1) Print Recipe");
+                        Console.WriteLine("2) Exit Application");
+                        Console.WriteLine("3) Change Recipe quantities");
+                        Console.WriteLine("4) Clear Recipe");
+                        Console.ResetColor();
+
+                        int step = Convert.ToInt32(Console.ReadLine());
+
+                        if (step == 1)
+                        {
+
+                            Console.WriteLine("Here is the recipe for " + myObj.Name);
+                            Console.WriteLine("********************************************************************");
+                            Console.WriteLine("");
+                            Console.WriteLine("                  \u001b[4mIngredients\u001b[0m");
+
+                            foreach (int element in ar)
+                            {
+                                Console.Write("-" + element);
+                            }
+                            Console.WriteLine();
+                            foreach (string element in array2)
+                            {
+                                Console.WriteLine(element + " ");
+                            }
+                            Console.WriteLine();
+                            foreach (string element in array)
+                            {
+                                Console.WriteLine(element);
+                            }
+                            Console.WriteLine();
+                    }
+                    }
+                    if (input == 2)
+                    {
+                        Console.ReadKey(true);
+                        Environment.Exit(0);
+                    }
+
+            }
+                if (firststep == 2)
+                {
+                    Console.ReadKey(true);
+                    Environment.Exit(0);
 
                 }
+                Console.Read();
+        
+        }
 
-            }
-            if (firststep == 2)
+            static void Main(string[] args)
             {
-                Console.ReadKey(true);
-                Environment.Exit(0);
+                Console.Title = "PROG6221_PART1";
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.WriteLine("********************************************************************");
+                Console.WriteLine("                Welcome to Sanele's recipe app  ");
+                Console.WriteLine("********************************************************************");
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("1) Add Recipe");
+                Console.WriteLine("2) Exit Application");
+                Console.ResetColor();
+
+                AddRecipe();
 
             }
-            Console.Read();
-        }
-        public static void Main(string[] args)
-        {
-            Console.Title = "PROG6221_PART1";
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine("********************************************************************");
-            Console.WriteLine("                Welcome to Sanele's recipe app  ");
-            Console.WriteLine("********************************************************************");
-            Console.ResetColor();
-
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("1) Add Recipe");
-            Console.WriteLine("2) Exit Application");
-            Console.ResetColor();
-
-            AddRecipe();
-            
-        }
 
 
     }

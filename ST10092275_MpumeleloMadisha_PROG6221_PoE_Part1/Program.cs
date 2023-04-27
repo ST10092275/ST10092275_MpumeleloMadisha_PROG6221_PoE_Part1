@@ -69,14 +69,17 @@ namespace recipes
                         arr[i] = Console.ReadLine();
 
                     }
-                    
-                
+                    Console.Clear();
+
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Select an option");
                     Console.WriteLine("1) Main Menu.");
                     Console.WriteLine("2) Exit Application.");
+                    Console.ResetColor();
 
                     int input = Convert.ToInt32(Console.ReadLine());
-                    
+                    Console.Clear();
+
                     if (input == 1)
                     {
 
@@ -84,7 +87,7 @@ namespace recipes
                         Console.WriteLine("********************************************************************");
                         Console.WriteLine("                          Main Menu");
                         Console.WriteLine("********************************************************************");
-                        Console.WriteLine("1) Print Recipe");
+                        Console.WriteLine("1) Display Recipe");
                         Console.WriteLine("2) Exit Application");
                         Console.WriteLine("3) Change Recipe quantities");
                         Console.WriteLine("4) Clear Recipe");
@@ -102,19 +105,25 @@ namespace recipes
 
                             foreach (int element in ar)
                             {
-                                Console.Write("-" + element);
+                                Console.Write("-" + element + " ");
                             }
-                            Console.WriteLine();
+                            
                             foreach (string element in array2)
                             {
-                                Console.WriteLine(element + " ");
+                                Console.Write(element + " ");
                             }
-                            Console.WriteLine();
+                            
                             foreach (string element in array)
                             {
-                                Console.WriteLine(element);
+                                Console.Write(element);
                             }
-                            Console.WriteLine();
+                            Console.WriteLine(" ");
+                            Console.WriteLine("                  \u001b[4mInstructions\u001b[0m");
+                            foreach (string element in arr)
+                            {
+                                Console.Write(element);
+                            }
+                        
                     }
                     }
                     if (input == 2)

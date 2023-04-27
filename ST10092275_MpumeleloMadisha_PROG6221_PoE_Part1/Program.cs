@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Xml.Serialization;
 
 namespace recipes
 {
@@ -14,11 +15,9 @@ namespace recipes
         }
     }
 
-
-
     class Recipe
     {
-        static void  NoIngredients()
+        static void NoIngredients()
         {
 
             int size = Convert.ToInt32(Console.ReadLine());
@@ -29,22 +28,14 @@ namespace recipes
                 Console.WriteLine("Please enter the name of the ingredient");
                 array[a] = Console.ReadLine();
             }
-        }
-        static void Quantity()
-        {
-
-            int size = int.Parse(Console.ReadLine());
-            string[] array = new string[size];
+       
+            
             for (int b = 0; b < size; b++)
             {
                 Console.WriteLine("Please enter the quantity of ingredient");
                 array[b] = Console.ReadLine();
             }
-        }
-        static void Measurement() {
-
-            int size = Convert.ToInt32(Console.ReadLine());
-            string[] array = new string[size];
+       
             for (int c = 0; c < size; c++)
             {
                 Console.WriteLine("Please enter the measurement unit of ingredient");
@@ -68,30 +59,24 @@ namespace recipes
 
             }
         }
-        public static void Main(string[] args)
+        static void AddRecipe()
         {
-            Console.Title = "PROG6221_PART1";
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine("********************************************************************");
-            Console.WriteLine("                Welcome to Sanele's recipe app  ");
-            Console.WriteLine("               Please enter an option to proceed");
-            Console.WriteLine("********************************************************************");
-            Console.ResetColor();
-
-            Console.WriteLine("1) Add Recipe");
-            Console.WriteLine("2) Exit Application");
             int firststep = Convert.ToInt32(Console.ReadLine());
-           
+
             if (firststep == 1)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Please press any key to proceed");
+                Console.ResetColor();
+
+
                 RecipeName myObj = new RecipeName();
                 Console.WriteLine("What is the name of the recipe?");
                 myObj.Name = Convert.ToString(Console.ReadLine());
-                Console.Clear() ;
-                Console.WriteLine("How many ingredients would you like to enter for the " + myObj.Name + " recipe?");
                 Console.Clear();
+
+                Console.WriteLine("How many ingredients would you like to enter for the " + myObj.Name + " recipe?");
+               
 
                 NoIngredients();
                 Console.WriteLine("Please enter any key to proceed");
@@ -121,20 +106,38 @@ namespace recipes
 
                 if (step == 1)
                 {
-                    
+
                     Console.WriteLine("Here is the recipe for " + myObj);
                     Console.WriteLine("********************************************************************");
-                    
+
                 }
-                
+
             }
             if (firststep == 2)
             {
                 Console.ReadKey(true);
                 Environment.Exit(0);
-                
+
             }
             Console.Read();
+        }
+        public static void Main(string[] args)
+        {
+            Console.Title = "PROG6221_PART1";
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("********************************************************************");
+            Console.WriteLine("                Welcome to Sanele's recipe app  ");
+            Console.WriteLine("********************************************************************");
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("1) Add Recipe");
+            Console.WriteLine("2) Exit Application");
+            Console.ResetColor();
+
+            AddRecipe();
+            
         }
 
 

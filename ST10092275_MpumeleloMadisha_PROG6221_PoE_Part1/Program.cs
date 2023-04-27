@@ -30,8 +30,13 @@ namespace recipes
             Console.Clear();
             for (int b = 0; b < size; b++)
             {
-                Console.WriteLine("Please enter the quantity of ingredient");
-                array[b] = Console.ReadLine();
+                    Console.WriteLine($"Please enter the quantity of ingredient");
+                    ar[b] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Please only enter numerical value");
             }
             Console.Clear();
             for (int c = 0; c < size; c++)

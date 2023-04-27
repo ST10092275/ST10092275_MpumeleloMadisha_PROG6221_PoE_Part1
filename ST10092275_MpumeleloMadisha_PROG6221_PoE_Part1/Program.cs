@@ -18,7 +18,7 @@ namespace recipes
     class Recipe
     {
 
-        static void AddRecipe()
+        static void AddRecipe(int a)
         {
             int firststep = Convert.ToInt32(Console.ReadLine());
 
@@ -39,7 +39,7 @@ namespace recipes
 
                 int size = Convert.ToInt32(Console.ReadLine());
                 string[] array = new string[size];
-                int[] ar = new int[size];
+                double[] ar = new double[size];
                 string[] array2 = new string[size];
 
                 for (int a = 0; a < size; a++)
@@ -92,6 +92,7 @@ namespace recipes
                         Console.WriteLine("3) Change Recipe quantities");
                         Console.WriteLine("4) Clear Recipe");
                         Console.ResetColor();
+                        
 
                         int step = Convert.ToInt32(Console.ReadLine());
 
@@ -103,20 +104,8 @@ namespace recipes
                             Console.WriteLine("");
                             Console.WriteLine("                  \u001b[4mIngredients\u001b[0m");
 
-                            foreach (int element in ar)
-                            {
-                                Console.Write("-" + element + " ");
-                            }
-                            
-                            foreach (string element in array2)
-                            {
-                                Console.Write(element + " ");
-                            }
-                            
-                            foreach (string element in array)
-                            {
-                                Console.Write(element);
-                            }
+                            Console.WriteLine(ar[a] + " " + array2[a] + " " + array[a]);
+                           
                             Console.WriteLine(" ");
                             Console.WriteLine("                  \u001b[4mInstructions\u001b[0m");
                             foreach (string element in arr)
@@ -124,6 +113,35 @@ namespace recipes
                                 Console.Write(element);
                             }
                         
+                    }
+                        if (step == 2)
+                    {
+                        Console.ReadKey(true);
+                        Environment.Exit(0);
+                    }
+                        if (step == 3)
+                    {
+                        Console.WriteLine("With which value do you want multiply quantities?");
+                        double multiply = Convert.ToDouble(Console.ReadLine());
+
+                        double z = ar[a] *= multiply;
+                        Console.Clear();
+
+                        
+                            Console.WriteLine("Here is the recipe for " + myObj.Name);
+                            Console.WriteLine("********************************************************************");
+                            Console.WriteLine("");
+                            Console.WriteLine("                  \u001b[4mIngredients\u001b[0m");
+
+                            Console.WriteLine(z + " " + array2[a] + " " + array[a]);
+                           
+                            Console.WriteLine(" ");
+                            Console.WriteLine("                  \u001b[4mInstructions\u001b[0m");
+                            foreach (string element in arr)
+                            {
+                                Console.Write(element);
+                            }
+
                     }
                     }
                     if (input == 2)

@@ -14,7 +14,6 @@ namespace recipes
 
         }
     }
-
     class Recipe
     {
         static void NoIngredients()
@@ -28,23 +27,20 @@ namespace recipes
                 Console.WriteLine("Please enter the name of the ingredient");
                 array[a] = Console.ReadLine();
             }
-       
-            
+            Console.Clear();
             for (int b = 0; b < size; b++)
             {
                 Console.WriteLine("Please enter the quantity of ingredient");
                 array[b] = Console.ReadLine();
             }
-       
+            Console.Clear();
             for (int c = 0; c < size; c++)
             {
                 Console.WriteLine("Please enter the measurement unit of ingredient");
                 array[c] = Console.ReadLine();
             }
-            
+            Console.Clear();
         }
-
-
         static void NoSteps()
         {
             Console.WriteLine("How many steps would you like to enter?");
@@ -54,7 +50,7 @@ namespace recipes
 
             for (int i = 0; i < number; i++)
             {
-                Console.WriteLine("Please enter the name of the ingredient");
+                Console.Write("-");
                 arr[i] = Console.ReadLine();
 
             }
@@ -79,12 +75,6 @@ namespace recipes
                
 
                 NoIngredients();
-                Console.WriteLine("Please enter any key to proceed");
-                Console.Clear();
-                Measurement();
-                Console.WriteLine("Please enter any key to proceed");
-                Console.Clear();
-                Quantity();
                 Console.WriteLine("Please enter any key to proceed");
                 Console.Clear();
                 NoSteps();

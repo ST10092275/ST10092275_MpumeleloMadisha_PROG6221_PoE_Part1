@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ST10092275_MpumeleloMadisha_PROG6221_PoE_Part1/1.0.0": {
+        "runtime": {
+          "ST10092275_MpumeleloMadisha_PROG6221_PoE_Part1.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ST10092275_MpumeleloMadisha_PROG6221_PoE_Part1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

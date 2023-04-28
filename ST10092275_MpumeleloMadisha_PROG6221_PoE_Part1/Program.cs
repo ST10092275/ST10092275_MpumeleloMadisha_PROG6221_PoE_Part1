@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Security.Cryptography;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -24,13 +25,9 @@ namespace recipes
 
             if (firststep == 1)
             {
-                static void AddRecipe(int a)
-                {
-
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Please press any key to proceed");
+                Console.WriteLine("Please press enter to proceed");
                 Console.ResetColor();
-
 
                 RecipeName myObj = new();
                 Console.WriteLine("What is the name of the recipe?");
@@ -44,7 +41,7 @@ namespace recipes
                 string[] array = new string[size];
                 double[] ar = new double[size];
                 string[] array2 = new string[size];
-                
+
 
                 for (int a = 0; a < size; a++)
                 {
@@ -80,150 +77,163 @@ namespace recipes
                 Console.WriteLine("1) Main Menu.");
                 Console.WriteLine("2) Exit Application.");
                 Console.ResetColor();
-
-                int input = Convert.ToInt32(Console.ReadLine());
                 Console.Clear();
+                int input = Convert.ToInt32(Console.ReadLine());
 
-                    if (input == 1)
+                if (input == 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine("********************************************************************");
+                    Console.WriteLine("                          Main Menu");
+                    Console.WriteLine("********************************************************************");
+                    Console.WriteLine("1) Display Recipe");
+                    Console.WriteLine("2) Exit Application");
+                    Console.WriteLine("3) Change Recipe quantities");
+                    Console.WriteLine("4) Clear Recipe");
+                    Console.ResetColor();
+
+                    int step = Convert.ToInt32(Console.ReadLine());
+
+                    if (step == 1)
                     {
 
-                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("Here is the recipe for " + myObj.Name);
                         Console.WriteLine("********************************************************************");
-                        Console.WriteLine("                          Main Menu");
-                        Console.WriteLine("********************************************************************");
-                        Console.WriteLine("1) Display Recipe");
-                        Console.WriteLine("2) Exit Application");
-                        Console.WriteLine("3) Change Recipe quantities");
-                        Console.WriteLine("4) Clear Recipe");
-                        Console.ResetColor();
-                        Console.Clear();
+                        Console.WriteLine("");
+                        Console.WriteLine("                  \u001b[4mIngredients\u001b[0m");
+                        int counter = 1;
 
-
-                        int step = Convert.ToInt32(Console.ReadLine());
-
-                        if (step == 1)
+                        foreach (double element in ar)
                         {
-
-                            Console.WriteLine("Here is the recipe for " + myObj.Name);
-                            Console.WriteLine("********************************************************************");
-                            Console.WriteLine("");
-                            Console.WriteLine("                  \u001b[4mIngredients\u001b[0m");
-
-                            foreach (double element in ar)
-                            {
-                                Console.WriteLine("{0}. {1}", size, element);
-                            }
-                            foreach (string element in array2)
-                            {
-                                Console.WriteLine("{0}. {1}", size, element);
-                            }
-                            foreach (string element in array)
-                            {
-                                Console.WriteLine("{0}. {1}", size, element);
-                            }
-                            Console.WriteLine(" ");
-                            Console.WriteLine("                  \u001b[4mInstructions\u001b[0m");
-                            foreach (string element in arr)
-                            {
-                                Console.WriteLine("{0}. {1}",size, element);
-                            }
-
-                            Console.WriteLine();
-                            Console.ForegroundColor = ConsoleColor.Magenta;
-                            Console.WriteLine("1) Exit Application");
-                            Console.WriteLine("2) Change Recipe quantities");
-                            Console.WriteLine("3) Clear Recipe");
-                            Console.ResetColor();
-
-
-                            int enter = Convert.ToInt32(Console.ReadLine());
-
-                            if (enter == 1)
-                            {
-                                Console.ReadKey(true);
-                                Environment.Exit(0);
-                            }
-                            else if (enter == 2)
-                            {
-
-                            }
-                            else if (enter == 3)
-                            {
-
-                            }
-                            else
-                            {
-                                Console.WriteLine("Wrong input");
-                            }
+                            Console.WriteLine("{0}. {1}", counter, element);
                         }
-                        else if (step == 2)
+                        foreach (string element in array2)
+                        {
+                            Console.WriteLine("{0}. {1}", counter, element);
+                        }
+                        foreach (string element in array)
+                        {
+                            Console.WriteLine("{0}. {1}", counter, element);
+                        }
+                        Console.WriteLine(" ");
+                        Console.WriteLine("                  \u001b[4mInstructions\u001b[0m");
+                        foreach (string element in arr)
+                        {
+                            Console.WriteLine("{0}. {1}", counter, element);
+                        }
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("1) Exit Application");
+                        Console.WriteLine("2) Change Recipe quantities");
+                        Console.WriteLine("3) Clear Recipe");
+                        Console.ResetColor();
+
+                        int enter = Convert.ToInt32(Console.ReadLine());
+
+                        if (enter == 1)
                         {
                             Console.ReadKey(true);
                             Environment.Exit(0);
                         }
-                        else if (step == 3)
+                        else if (enter == 2)
                         {
                             Console.WriteLine("With which value do you want multiply quantities?");
-                            double multiply = Convert.ToDouble(Console.ReadLine());
-                            foreach (int num in ar)
-                            {
-                                  multiply *= num;
-                            }
-                            
-                            Console.WriteLine("Here is the recipe for " + myObj.Name);
-                            Console.WriteLine("********************************************************************");
-                            Console.WriteLine("");
-                            Console.WriteLine("                  \u001b[4mIngredients\u001b[0m");
+                            Console.WriteLine("1) 0.5");
+                            Console.WriteLine("2) 2");
+                            Console.WriteLine("3) 3");
+                            Console.Clear();
 
-                            Console.WriteLine(multiply + " " + array2[a] + " " + array[a]);
+                            Console.WriteLine("Are you sure you want to change quantities?");
+                            Console.WriteLine("Enter Y/N");
+                            string answer = Console.ReadLine();
 
-                            Console.WriteLine(" ");
-                            Console.WriteLine("                  \u001b[4mInstructions\u001b[0m");
-                            foreach (string element in arr)
+                            if (answer == Y)
                             {
-                                Console.Write(element);
+                                int z = Convert.ToInt32(Console.ReadLine());
+                                double half = 0.5;
+                                int twice = 2;
+                                int triple = 3;
+                                if (z == 1)
+                                {
+
+                                    foreach (double num in ar)
+                                    {
+                                        half *= num;
+                                    }
+
+                                    Console.WriteLine("Here is the recipe for " + myObj.Name);
+                                    Console.WriteLine("********************************************************************");
+                                    Console.WriteLine("");
+                                    Console.WriteLine("                  \u001b[4mIngredients\u001b[0m");
+
+                                    Console.WriteLine("{0}. {1}", half);
+                                    foreach (string element in array2)
+                                    {
+                                        Console.WriteLine("{0}. {1}", counter, element);
+                                    }
+                                    foreach (string element in array)
+                                    {
+                                        Console.WriteLine("{0}. {1}", counter, element);
+
+                                        Console.WriteLine(" ");
+                                        Console.WriteLine("                  \u001b[4mInstructions\u001b[0m");
+                                        foreach (string value in arr)
+                                        {
+                                            Console.Write("{0}. {1}", counter, value);
+                                        }
+                                    }
+                                    if (z == 2)
+                                    {
+
+                                        foreach (int num in ar)
+                                        {
+                                            twice *= num;
+                                        }
+                                        Console.WriteLine("Here is the recipe for " + myObj.Name);
+                                        Console.WriteLine("********************************************************************");
+                                        Console.WriteLine("");
+                                        Console.WriteLine("                  \u001b[4mIngredients\u001b[0m");
+
+                                        Console.WriteLine("{0}. {1}", half);
+                                        foreach (string element in array2)
+                                        {
+                                            Console.WriteLine("{0}. {1}", counter, element);
+                                        }
+                                        foreach (string element in array)
+                                        {
+                                            Console.WriteLine("{0}. {1}", counter, element);
+
+                                            Console.WriteLine(" ");
+                                            Console.WriteLine("                  \u001b[4mInstructions\u001b[0m");
+                                            foreach (string value in arr)
+                                            {
+                                                Console.Write("{0}. {1}", counter, value);
+                                            }
+
+                                        }
+                                    }
+                                }
                             }
+                            else if (answer == N)
+                            {
+                               Console.WriteLine("Closing Application");
+                                Console.ReadKey(true);
+                                Environment.Exit(0);
+
+                            }
+                        else if (enter == 3)
+                        {
 
                         }
-                        else if (step == 4)
+                        else
                         {
-                            Array.Clear(ar, 0, ar.Length);
-                            Array.Clear(arr, 0, arr.Length);
-                            Array.Clear(array, 0, array.Length);
-                            Array.Clear(array2, 0, array2.Length);
-
-                            Console.WriteLine("Recipe has been cleared");
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("1) Add Recipe");
-                            Console.WriteLine("2) Exit Application");
-                            Console.WriteLine("3) Display Recipe");
-                            Console.ResetColor();
-
-                            int option = Convert.ToInt32(Console.ReadLine());
-
-                            if (option == 1)
-                            {
-
-                            }
+                           Console.WriteLine("Wrong input");
                         }
-
-                        if (input == 2)
-                        {
-                            Console.ReadKey(true);
-                            Environment.Exit(0);
                         }
                     }
                 }
-            if (firststep == 2)
-            {
-                 Console.ReadKey(true);
-                 Environment.Exit(0);
 
             }
-                Console.Read();
-
-            }
-
             static void Main(string[] args)
             {
                 Console.Title = "PROG6221_PART1";
@@ -239,16 +249,9 @@ namespace recipes
                 Console.WriteLine("2) Exit Application");
                 Console.ResetColor();
 
-                EnterRecipe();
+                EditRecipe();
 
             }
-
-
-        }
-
-        private static void EnterRecipe()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -4,7 +4,10 @@ This is code that is a console application that takes user input for a single re
 ### Welcoming
 This application is an easy-to-use application which requires user input, the application first starts with a  bright welcoming message.
 ### Adding a Recipe
-The application will ask the user if they want to add a  recipe or exit, if the user picks the enter 1) they will be allowed to enter a recipe and if the user chooses 2) the application will exit and if they select a random input the application will give an error.
+The application will ask the user if they want to add a  recipe or exit, if the user picks the enter 
+1) they will be allowed to enter a recipe and if the user chooses 
+
+2) the application will exit and if they select a random input the application will give an error.
 #### Steps of adding a recipe
 1.) The application will ask for the recipe name, then proceed to prompt the user to enter the number of ingredients (if the user enters a value that is not a number, the application will give an error).
 

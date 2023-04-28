@@ -1,11 +1,11 @@
 # ST10092275_MpumeleloMadisha_PROG6221_PoE_Part1
 This is code that is a console application that takes user input for a single recipe.
-##How to use Sanele's Recipe Application
-###Welcoming
+## How to use Sanele's Recipe Application
+### Welcoming
 This application is an easy-to-use application which requires user input, the application first starts with a  bright welcoming message.
-###Adding a Recipe
+### Adding a Recipe
 The application will ask the user if they want to add a  recipe or exit, if the user picks the enter 1) they will be allowed to enter a recipe and if the user chooses 2) the application will exit and if they select a random input the application will give an error.
-####Steps of adding a recipe
+#### Steps of adding a recipe
 1.) The application will ask for the recipe name, then proceed to prompt the user to enter the number of ingredients (if the user enters a value that is not a number, the application will give an error). 
 2.) Once the user enters the number of ingredients, the application will prompt the user to enter the ingredients, quantity and measurement units for each ingredient.
 3.) After the ingredient is entered the application will ask how many steps/instructions, the application will then require the steps/instructions for the number inputed when user was asked how many steps they'd like to enter.

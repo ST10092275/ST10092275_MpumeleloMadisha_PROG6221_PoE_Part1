@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 
 namespace recipes
 {
@@ -37,62 +38,79 @@ namespace recipes
             Console.WriteLine("2) Exit Application");
             Console.ResetColor();
 
-            EditRecipe(); // Calls the EditRecipe method
+            List <string> list = new List<string>();
+
+            EditRecipe(list); // Calls the EditRecipe method
             Console.ReadKey(); //Executes commands within the code more efficiently
 
+
         }
-        static void EditRecipe() //Declares a new method
+        static void EditRecipe(List<string>list) //Declares a new method
         {
             int? firststep = Convert.ToInt32(Console.ReadLine()); //takes in user input for the menu
 
             if (firststep == 1) // If the user chooses option one then the code under the if statement will be executed
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Please press enter to proceed"); // prompts user to press enter
+                Console.WriteLine("How many recipes would you like to enter?");
+                int? recipes = Convert.ToInt32(Console.ReadLine());
                 Console.ResetColor();
 
-                RecipeName myObj = new(); //creates a new option that stores recipe name
-                Console.WriteLine("What is the name of the recipe?");
-                myObj.Name = Convert.ToString(Console.ReadLine()!);
-                Console.Clear(); 
-
-                Console.WriteLine("How many ingredients would you like to enter for the " + myObj.Name + " recipe?");
-
-
-                int size = Convert.ToInt32(Console.ReadLine()); 
-                string[] array = new string[size];//declares an array for ingrediants name to store values
-                double[] ar = new double[size];//declares an array for quantity to store values
-                string[] array2 = new string[size];//declares an array for measurements to store values
-
-
-                for (int a = 0; a < size; a++) // for loop that stores values into the arrays
+                for (int k = 0; k < recipes; k++)
                 {
-                    Console.WriteLine("Please enter the name of the ingredient");
-                    array[a] = Console.ReadLine()!; //takes in user input to be stored in an array
-
+                    RecipeName myObj = new(); //creates a new option that stores recipe name
+                    Console.WriteLine("What is the name of the recipe?");
+                    myObj.Name = Convert.ToString(Console.ReadLine()!);
                     Console.Clear();
-                    Console.WriteLine("Please enter the quantity of ingredient");
-                    ar[a] = Convert.ToInt32(Console.ReadLine());
 
-                    Console.Clear(); // clears the application output and user input to remove clutter
+                    Console.WriteLine("How many ingredients would you like to enter for the " + myObj.Name + " recipe?");
 
-                    Console.WriteLine("Please enter the measurement unit of ingredient ");
-                    array2[a] = Console.ReadLine()!;
 
-                    Console.Clear();
-                    Console.WriteLine("Please enter any key to proceed");
-                    Console.Clear();
+                    int? size = Convert.ToInt32(Console.ReadLine());
+
+
+                    for (int a = 0; a < size; a++) // for loop that stores values into the arrays
+                    {
+                        Console.WriteLine("Please enter the name of the ingredient");
+                        string ingredient = Console.ReadLine()!; //takes in user input to be stored 
+                        list.Add(ingredient);
+
+                        Console.Clear();
+                        Console.WriteLine("Please enter the quantity of ingredient");
+                        int quantity = Convert.ToInt32(Console.ReadLine());
+                        list.Add(list[quantity]);
+
+                        Console.Clear(); // clears the application output and user input to remove clutter
+
+                        Console.WriteLine("Please enter the measurement unit of ingredient ");
+                        string unit = Console.ReadLine()!;
+                        list.Add(unit);
+                        Console.Clear();
+
+                        Console.WriteLine("Please enter the number calories of ingredient");
+                        int calories = Convert.ToInt32(Console.ReadLine());
+                        list.Add(list[calories]);
+                        Console.Clear();
+
+                        Console.WriteLine("Please enter the food group of ingredient");
+                        string foodGroup = Console.ReadLine()!;
+                        list.Add(foodGroup);
+
+                        Console.Clear();
+                        Console.WriteLine("Please enter any key to proceed");
+                        Console.Clear();
+                    }
+                    Console.WriteLine("How many steps would you like to enter?");
+                    int number = Convert.ToInt32(Console.ReadLine());
+
+                    for (int i = 0; i < number; i++)
+                    {
+                        Console.Write("-");
+                        string step = Console.ReadLine()!;
+                        list.Add(step);
+
+                    }
                 }
-                Console.WriteLine("How many steps would you like to enter?");
-                int number = Convert.ToInt32(Console.ReadLine());
-                string[] arr = new string[number]; //declares an array instructions method for to store values
-                for (int i = 0; i < number; i++)
-                {
-                    Console.Write("-");
-                    arr[i] = Console.ReadLine()!;
-
-                }
-                
                 bool valid = false; //ensures that user inputs correct input if not, it will reboot the code
                 while (!valid)
                 {
@@ -127,9 +145,9 @@ namespace recipes
                         Console.WriteLine("                  \u001b[4mIngredients\u001b[0m"); //underlines the name ingredients
                           for (int x = 0; x < size; x++)
                           {
-                             Console.WriteLine(x + 1 + ". " + ar[x] + " " + array2[x] + " " + array[x]);
+                             
                           }
-                                Console.WriteLine("");
+                        Console.WriteLine("");
                         Console.WriteLine("                  \u001b[4mInstructions\u001b[0m");
                                 for (int x = 0; x < size; x++)
                                 {

@@ -29,7 +29,7 @@ namespace RecipeConsole
         {
             get; set;
         }
-        public int FoodGroup
+        public string FoodGroup
         {
             get; set;
         }
@@ -150,7 +150,108 @@ namespace RecipeConsole
 
                     Console.WriteLine("How many ingredients would you like to enter for the " + myObj.Name + " recipe?");
                     int? size = Convert.ToInt32(Console.ReadLine());
+
+                    for (int a = 0; a < size; a++) // for loop that stores values into the arrays
+                    {
+                        Console.WriteLine("Please enteringredient information");
+                        Ingredients ingredient = new Ingredients()!;
+
+                        Console.WriteLine("Please enter the name of the ingredient");
+                        ingredient.Name = Console.ReadLine()!; //takes in user input to be stored 
+                       
+                        Console.Clear();
+                        Console.WriteLine("Please enter the quantity of ingredient");
+                        ingredient.Quantity = Convert.ToDouble(Console.ReadLine());
+                        Console.Clear(); // clears the application output and user input to remove clutter
+
+                        Console.WriteLine("Please enter the measurement unit of ingredient ");
+                        ingredient.MeasurementUnit = Console.ReadLine();
+                        Console.Clear();
+
+                        Console.WriteLine("Please enter the number calories of ingredient");
+                        ingredient.Calories = Convert.ToInt32(Console.ReadLine());
+                        Console.Clear();
+
+                        Console.WriteLine("Please enter the food group of ingredient");
+                        ingredient.FoodGroup = Console.ReadLine();
+                        recipe.Ingredient.Add(ingredient);
+                        Console.Clear();
+                        Console.WriteLine("Please enter any key to proceed");
+                        Console.Clear();
+                    }
+                    Console.WriteLine("How many steps would you like to enter?");
+                    int number = Convert.ToInt32(Console.ReadLine());
+
+                    for (int i = 0; i < number; i++)
+                    {
+                        Console.Write("Step" + (i+1) + ":");
+                        Steps steps = new Steps();
+                        Console.Write("Instruction: ");
+                        steps.Instructions = Console.ReadLine()!;
+                        recipe.Step.Add(steps);
+                    }
+                    recipe.Add(recipes);
                     Console.ResetColor();
+                }
+                else if (firststep == "2")
+                {
+                    if (recipes.Count == 0)
+                    {
+                        Console.WriteLine("The Recipe is invalid");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\u001b[4mRecipes:\u001b[0m");
+                        recipes.Sort((re1, re2) =>re1.Name.CompareTo(re2.Name));
+                        foreach (var recipe in recipes)
+                        {
+                            Console.WriteLine("*" + recipe.Name);
+                        }
+                        Console.WriteLine("Which recipe would you like to view?");
+                        string recipeName = Console.ReadLine();
+
+                        Recipes viewRecipe = recipes.Find(re => re.Name == recipeName);
+                        if(viewRecipe != null)
+                        {
+                            Console.WriteLine();
+                            viewRecipe.PrintRecipe();
+                            Console.WriteLine();
+                            Console.WriteLine("Total number of calories:" + viewRecipe.TotalCalories());
+
+                            viewRecipe.MaxCalories(300);
+                            Console.WriteLine();
+
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Select an option");
+                            Console.WriteLine("1) Main Menu.");
+                            Console.WriteLine("2) Exit Application.");
+                            Console.ResetColor();
+                            string choice = Console.ReadLine();
+
+                            if (choice == "1")
+                            {
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("********************************************************************");
+                                Console.WriteLine("                          Main Menu");
+                                Console.WriteLine("********************************************************************");
+                                Console.WriteLine("1) Display Recipe");                                                          //Displays the main menu
+                                Console.WriteLine("2) Exit Application");
+                                Console.WriteLine("3) Change Recipe quantities");
+                                Console.WriteLine("4) Clear Recipe");
+                                string secondChoice = Console.ReadLine();
+                                Console.ResetColor();
+
+                                if (secondChoice == "1")
+                                {
+                                    Console.WriteLine("With which value would you like your recipe to be scaled with?")
+                                }
+
+                          
+                            }
+
+
+                        }
+                    }
                 }
             }
             static void Recipes() //Declares a new method
@@ -169,33 +270,7 @@ namespace RecipeConsole
                         int? size = Convert.ToInt32(Console.ReadLine());
 
 
-                        for (int a = 0; a < size; a++) // for loop that stores values into the arrays
-                        {
-                            Console.WriteLine("Please enter the name of the ingredient");
-                            string ingredient = Console.ReadLine()!; //takes in user input to be stored 
-                            list.Add(ingredient);
-
-                            Console.Clear();
-                            Console.WriteLine("Please enter the quantity of ingredient");
-                            int quantity = Convert.ToInt32(Console.ReadLine());
-                            list.Add(list[quantity]);
-
-                            Console.Clear(); // clears the application output and user input to remove clutter
-
-                            Console.WriteLine("Please enter the measurement unit of ingredient ");
-                            string unit = Console.ReadLine()!;
-                            list.Add(unit);
-                            Console.Clear();
-
-                            Console.WriteLine("Please enter the number calories of ingredient");
-                            int calories = Convert.ToInt32(Console.ReadLine());
-                            list.Add(list[calories]);
-                            Console.Clear();
-
-                            Console.WriteLine("Please enter the food group of ingredient");
-                            string foodGroup = Console.ReadLine()!;
-                            list.Add(foodGroup);
-
+                        
                             Console.Clear();
                             Console.WriteLine("Please enter any key to proceed");
                             Console.Clear();

@@ -1,5 +1,5 @@
 # ST10092275_MpumeleloMadisha_PROG6221_PoE_Part1
-This is code that is a console application that takes user input for a single recipe.
+This is code that is a console application that takes user input for multiplw recipes.
 ## How to use Sanele's Recipe Application
 ### Welcoming
 This application is an easy-to-use application which requires user input, the application first starts with a  bright welcoming message.
@@ -11,7 +11,7 @@ The application will ask the user if they want to add a  recipe or exit, if the 
 #### Steps of adding a recipe
 1.) The application will ask for the recipe name, then proceed to prompt the user to enter the number of ingredients (if the user enters a value that is not a number, the application will give an error).
 
-2.) Once the user enters the number of ingredients, the application will prompt the user to enter the ingredients, quantity and measurement units for each ingredient.
+2.) Once the user enters the number of ingredients, the application will prompt the user to enter the ingredients, quantity, measurement units, food groud and the number of calories for each ingredient.
 
 3.) After the ingredient is entered the application will ask how many steps/instructions, the application will then require the steps/instructions for the number inputed when user was asked how many steps they'd like to enter.
 
@@ -34,6 +34,8 @@ The application will ask the user if they want to add a  recipe or exit, if the 
 8.) When the third option is chosen, the user will be asked if they are sure that they want to change the quantities and if they say yes, the the user will be given an option to scale their recipe by 0.5, 2 and 3. The user will then be given an option to reset or save the changes.
 
 9.) When selecting the option to clear the recipe, the recipe will be cleared and then the user will be asked if they want to exit the application or capture a new recipe.
+
+10.)After the user selects any of the options the user will have a option to add a new recipe ore view recipes-the recipes will be vied in alphabetical order and then the user can type in the name of the recipe they waant to view, if the recipe is invalid, the apllication will give the user a option to add a new recipe, exit application or display recipes.
 
 
 

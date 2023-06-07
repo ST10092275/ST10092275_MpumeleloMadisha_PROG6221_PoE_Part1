@@ -1,4 +1,4 @@
-# ST10092275_MpumeleloMadisha_PROG6221_PoE_Part1
+# ST10092275_MpumeleloMadisha_PROG6221_PoE
 This is code that is a console application that takes user input for multiplw recipes.
 ## How to use Sanele's Recipe Application
 ### Welcoming

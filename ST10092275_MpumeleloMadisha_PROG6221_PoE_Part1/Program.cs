@@ -64,7 +64,7 @@ namespace RecipeConsole
         public void PrintRecipe()
         {
             Console.WriteLine("Here is the recipe for:");
-            Console.WriteLine("/t" + Name);
+            Console.WriteLine( Name);
             Console.WriteLine("\u001b[4mIngredients\u001b[0m");
             if (Ingredient != null)
             {
@@ -106,7 +106,7 @@ namespace RecipeConsole
             {
                 Step.Clear();
             }
-            Console.WriteLine("The" + Name + "Recipe is deleted.");
+            Console.WriteLine("The" + Name + "recipe is deleted.");
         }
         public int TotalCalories()
         {
@@ -163,6 +163,7 @@ namespace RecipeConsole
 
                     Console.WriteLine("How many ingredients would you like to enter for the " + recipe.Name + " recipe?");
                     int? size = Convert.ToInt32(Console.ReadLine());
+                    Console.Clear();
 
                     for (int a = 0; a < size; a++) // for loop that stores values into the arrays
                     {
@@ -186,20 +187,19 @@ namespace RecipeConsole
                         Console.Clear();
 
                         Console.WriteLine("Please enter the food group of ingredient");
+                        
                         ingredient.FoodGroup = Console.ReadLine()!;
                         recipe.Ingredient?.Add(ingredient);
                         Console.Clear();
-                        Console.WriteLine("Please enter any key to proceed");
-                        Console.Clear();
+                        
                     }
                     Console.WriteLine("How many steps would you like to enter?");
                     int number = Convert.ToInt32(Console.ReadLine());
 
                     for (int i = 0; i < number; i++)
                     {
-                        Console.Write("Step" + (i + 1) + ":");
+                        Console.WriteLine("Step" + (i + 1) + ":");
                         Steps steps = new Steps();
-                        Console.Write("Instruction: ");
                         steps.Instructions = Console.ReadLine()!;
                         recipe.Step?.Add(steps);
                     }
@@ -234,7 +234,8 @@ namespace RecipeConsole
                             viewRecipe.MaxCalories(300);
                             Console.WriteLine();
 
-                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                            Console.BackgroundColor = ConsoleColor.White;
                             Console.WriteLine("Select an option");
                             Console.WriteLine("1) Main Menu.");
                             Console.WriteLine("2) Exit Application.");
@@ -244,6 +245,7 @@ namespace RecipeConsole
                             if (choice == "1")
                             {
                                 Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.BackgroundColor = ConsoleColor.White;
                                 Console.WriteLine("********************************************************************");
                                 Console.WriteLine("                          Main Menu");
                                 Console.WriteLine("********************************************************************");

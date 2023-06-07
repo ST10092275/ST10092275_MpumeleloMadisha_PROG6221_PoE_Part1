@@ -11,14 +11,14 @@ using System.Collections.Generic;
 
 namespace RecipeConsole
 {
-    class Ingredients
+    class Ingredients //new class created
     {
-        public string? Name
+        public string? Name //? used to make Name nullable
         {
             get; set;
         }
         public double Quantity
-        {
+        {                                            //using getters and setters to represent ingredients inforomation
             get; set;
         }
         public string? MeasurementUnit
@@ -38,7 +38,7 @@ namespace RecipeConsole
     {
         public string? Instructions
         {
-            get; set;
+            get; set; // uses getters and setters to represent instruction for the steps
         }
     }
     class FullRecipes
@@ -47,11 +47,11 @@ namespace RecipeConsole
         {
             get; set;
         }
-        public List<Ingredients>? Ingredient
+        public List<Ingredients>? Ingredient //list created to store ingredients
         {
             get; set;
         }
-        public List<Steps>? Step
+        public List<Steps>? Step  //list created to store steps
         {
             get; set;
         }
@@ -61,68 +61,68 @@ namespace RecipeConsole
             Step = new List<Steps>();
         }
 
-        public void PrintRecipe()
+        public void PrintRecipe() //print recipe method created, to print the recipe
         {
             Console.WriteLine("Here is the recipe for:");
-            Console.WriteLine( Name);
-            Console.WriteLine("\u001b[4mIngredients\u001b[0m");
+            Console.WriteLine(Name);
+            Console.WriteLine("\u001b[4mIngredients\u001b[0m"); // underlined the word ingredients
             if (Ingredient != null)
             {
                 foreach (var ingredients in Ingredient)
                 {
-                    Console.WriteLine("*" + ingredients.Name + " " + ingredients.Quantity + ingredients.MeasurementUnit);
+                    Console.WriteLine("*" + ingredients.Name + " " + ingredients.Quantity + ingredients.MeasurementUnit); //Prints all recipe ingredients and their information
                 }
             }
-            if (Step != null) 
-            { 
+            if (Step != null)
+            {
                 Console.WriteLine("\u001b[4mSteps:\u001b[0m");
                 for (int a = 0; a < Step.Count; a++)
                 {
-                    Console.WriteLine((a + 1) + "*" + Step[a].Instructions);
+                    Console.WriteLine((a + 1) + "*" + Step[a].Instructions); //for loop to print step while addind numbers to each step
                 }
             }
         }
-        public void Scaling(double number)
+        public void Scaling(double number) //method to scale quatity 
         {
             if (Ingredient != null)
             {
                 foreach (var ingredients in Ingredient)
                 {
-                    ingredients.Quantity *= number;
+                    ingredients.Quantity *= number; //calculates the quantities with the number inputted
                 }
             }
         }
         public void ResetScalledQuantities()
         {
-            Console.WriteLine("Quantities are reseted to original value.");
+            Console.WriteLine("Quantities are reseted to original value."); //resets quantity values
         }
         public void DeleteRecipe()
         {
-            if (Ingredient != null)
+            if (Ingredient != null) // makes ingredient nullable
             {
-                Ingredient.Clear();
+                Ingredient.Clear();//Deletes ingredients in therecipe chosen
             }
             if (Step != null)
             {
-                Step.Clear();
+                Step.Clear(); //deletes steps in a recipe
             }
             Console.WriteLine("The" + Name + "recipe is deleted.");
         }
         public int TotalCalories()
         {
-            
+
             int total = 0;
             foreach (var ingredients in Ingredient!)
             {
-                total += ingredients.Calories;
+                total += ingredients.Calories; //calculates number of calories
             }
-            return total;
+            return total; //returns the total number calculated
         }
         public void MaxCalories(int max)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Red; //makes the waring red
             int total = TotalCalories();
-            if (total > max)
+            if (total > max) //comapres the total to the max of 300 to see if calories are exceeded
             {
                 Console.WriteLine("Warning!");
                 Console.WriteLine("Maximum calories in a recipe are exceeded, this recipe might not be good for you." + max);
@@ -134,7 +134,7 @@ namespace RecipeConsole
     {
         static void Main(string[] args) // declares main method
         {
-            List<FullRecipes> recipes = new List<FullRecipes>();
+            List<FullRecipes> recipes = new List<FullRecipes>(); //New list created
             while (true)
             {
                 Console.Title = "PROG6221_PART2"; //Names the console application
@@ -144,12 +144,12 @@ namespace RecipeConsole
                 Console.WriteLine("                Welcome to Sanele's recipe app  ");                       //Welcomes user to the applications
                 Console.WriteLine("********************************************************************");
 
-                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("1) Add Recipe");  //Displays a menu to user
                 Console.WriteLine("2) Display all Recipes");
                 Console.WriteLine("3) Exit Application");
-                Console.ResetColor();
-               
+                Console.ResetColor(); //resets colour of the program
+
                 string? firststep = Console.ReadLine(); //takes in user input for the menu
 
                 if (firststep == "1") // If the user chooses option one then the code under the if statement will be executed
@@ -159,7 +159,7 @@ namespace RecipeConsole
                     Console.WriteLine("What is the name of the recipe?");
                     recipe.Name = Console.ReadLine()!;
 
-                    Console.Clear();
+                    Console.Clear(); //clears previous output and input
 
                     Console.WriteLine("How many ingredients would you like to enter for the " + recipe.Name + " recipe?");
                     int? size = Convert.ToInt32(Console.ReadLine());
@@ -168,10 +168,10 @@ namespace RecipeConsole
                     for (int a = 0; a < size; a++) // for loop that stores values into the arrays
                     {
                         Console.WriteLine("Please enter ingredient information");
-                        Ingredients ingredient = new Ingredients()!;
-
+                        Ingredients ingredient = new Ingredients()!; //exclamation used to make the new delegate nullable
+                                                                     //creates new ingredient
                         Console.WriteLine("Please enter the name of the ingredient");
-                        ingredient.Name = Console.ReadLine()!; //takes in user input to be stored 
+                        ingredient.Name = Console.ReadLine()!; //takes in user input to be stored using a delegate
                         Console.Clear();
 
                         Console.WriteLine("Please enter the quantity of ingredient");
@@ -187,23 +187,23 @@ namespace RecipeConsole
                         Console.Clear();
 
                         Console.WriteLine("Please enter the food group of ingredient");
-                        
+
                         ingredient.FoodGroup = Console.ReadLine()!;
-                        recipe.Ingredient?.Add(ingredient);
+                        recipe.Ingredient?.Add(ingredient); //addsthe ingredients to the recipe
                         Console.Clear();
-                        
+
                     }
                     Console.WriteLine("How many steps would you like to enter?");
                     int number = Convert.ToInt32(Console.ReadLine());
 
                     for (int i = 0; i < number; i++)
                     {
-                        Console.WriteLine("Step" + (i + 1) + ":");
+                        Console.WriteLine("Step" + (i + 1) + ":");//numbers the steps
                         Steps steps = new Steps();
                         steps.Instructions = Console.ReadLine()!;
-                        recipe.Step?.Add(steps);
+                        recipe.Step?.Add(steps); //adds the steps to the recipe
                     }
-                    recipes.Add(recipe);
+                    recipes.Add(recipe); //adds the recipe
                     Console.ResetColor();
                 }
                 else if (firststep == "2")
@@ -215,23 +215,25 @@ namespace RecipeConsole
                     else
                     {
                         Console.WriteLine("\u001b[4mRecipes:\u001b[0m");
-                        recipes.Sort((re1, re2) => re1.Name.CompareTo(re2.Name));
+                        recipes.Sort((re1, re2) => re1.Name.CompareTo(re2.Name)); //makes the recipes to show in alphabetical order
                         foreach (var recipe in recipes)
                         {
                             Console.WriteLine("*" + recipe.Name);
                         }
                         Console.WriteLine("Which recipe would you like to view?");
                         string? recipeName = Console.ReadLine();
+                        Console.Clear();
 
-                        FullRecipes viewRecipe = recipes.Find(re => re.Name == recipeName)!;
+                        FullRecipes viewRecipe = recipes.Find(re => re.Name == recipeName)!; //chooses the recipe to view
                         if (viewRecipe != null)
                         {
                             Console.WriteLine();
-                            viewRecipe.PrintRecipe();
+                            viewRecipe.PrintRecipe(); //displays the recipe chosen
                             Console.WriteLine();
                             Console.WriteLine("Total number of calories:" + viewRecipe.TotalCalories());
 
-                            viewRecipe.MaxCalories(300);
+                            viewRecipe.MaxCalories(300); //limits the maximum calories to 300
+                            Console.Clear();
                             Console.WriteLine();
 
                             Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -259,43 +261,57 @@ namespace RecipeConsole
 
                                 if (secondChoice == "1")
                                 {
-                                    viewRecipe.PrintRecipe();
+                                    viewRecipe.PrintRecipe(); // prints recipe
                                 }
                                 else if (secondChoice == "2")
                                 {
-                                    Environment.Exit(0);
+                                    Environment.Exit(0); //exists the application
                                 }
                                 else if (secondChoice == "3")
                                 {
-                                    Console.WriteLine("With which value would you like your recipe to be scaled with?");
-                                    double numbertoScale = Convert.ToDouble(Console.ReadLine());
-                                    viewRecipe.Scaling(numbertoScale);
-                                    Console.WriteLine("Recipe has new quantities.");
-                                    viewRecipe.PrintRecipe();
+                                    Console.WriteLine("Are you sure you want to scale the recipe? Enter Y or N");//asks user if they really want to change quantities
+                                    string? answer = Console.ReadLine();
+                                    if (answer == "Y")
+                                    {
+                                        Console.WriteLine("With which value would you like your recipe to be scaled with?");
+                                        double numbertoScale = Convert.ToDouble(Console.ReadLine());
+                                        viewRecipe.Scaling(numbertoScale); // changes quantities of the recipe to the number chosen/inputted
+                                        Console.WriteLine("Recipe has new quantities.");
+                                        viewRecipe.PrintRecipe(); //views newly scaled recipe
+                                        Console.Clear();
+                                    }
+                                    else if (answer == "N")
+                                    {
+                                        Console.WriteLine("");
+                                        Console.Clear();
+                                    }
                                 }
                                 else if (secondChoice == "4")
                                 {
-                                    viewRecipe.DeleteRecipe();
+                                    viewRecipe.DeleteRecipe(); //detes the recipe using a methosd
+                                    Console.Clear();
                                 }
                                 else
                                 {
                                     Console.WriteLine("The chosen option is not available, please try again");
+                                    Console.Clear();
                                 }
                             }
                             else
                             {
                                 Console.WriteLine("The recipe chosen is not available.");
+                                Console.Clear();
                             }
 
                         }
                     }
                 }
-                else if (firststep== "3") 
+                else if (firststep == "3")
                 {
-                    Environment.Exit(0);
+                    Environment.Exit(0); //exists application
                 }
             }
-             
+
         }
     }
 }

@@ -124,7 +124,7 @@ namespace RecipeConsole
             int total = TotalCalories();
             if (total > max)
             {
-                Console.WriteLine("            Warning!");
+                Console.WriteLine("Warning!");
                 Console.WriteLine("Maximum calories in a recipe are exceeded, this recipe might not be good for you." + max);
             }
             Console.ResetColor();

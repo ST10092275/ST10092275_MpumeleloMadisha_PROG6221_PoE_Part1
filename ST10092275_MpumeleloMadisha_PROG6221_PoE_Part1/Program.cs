@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using System.Collections.Generic;
+using System.Collections.Generic;//allows uage of delegates
 
 namespace RecipeConsole
 {
